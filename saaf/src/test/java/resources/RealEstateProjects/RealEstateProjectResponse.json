@@ -1,0 +1,109 @@
+{
+    "data": {
+        "id": 125,
+        "name": "New project Number 274",
+        "project_size": "13725612.0000",
+        "price_per_meter": "100.0000",
+        "total_price": "1372561200.0000",
+        "total_development_cost": null,
+        "marketing_cost": null,
+        "suk_number": null,
+        "location": "Location1,\nLocation2,",
+        "project_type": {
+            "id": 1,
+            "label": "تأجير"
+        },
+        "for_type": {
+            "id": 0,
+            "label": "بيع"
+        },
+        "project_phase": {
+            "id": null,
+            "label": null
+        },
+        "status": {
+            "id": 0,
+            "label": "مفتوح"
+        },
+        "developers": [
+            {
+                "id": 25,
+                "developer_name": "Test New Dev 22",
+                "commercial_registration_number": "14475105144133",
+                "contact_number": "165156165",
+                "email": "mhmod.sadek2017@gmail.com",
+                "address": "Test New Address 1,\nTest New Address 2,\nTest New Address 3,\nTest New Address 4,",
+                "vat_number": "103177205510701",
+                "status": 1,
+                "created_at": "2025-12-09T13:13:37.000000Z",
+                "updated_at": "2025-12-09T13:13:37.000000Z",
+                "deleted_at": null,
+                "pivot": {
+                    "real_state_project_id": 125,
+                    "developer_id": 25
+                }
+            }
+        ],
+        "marketing_developer": null,
+        "funds": null,
+        "is_belongs_to_fund": false,
+        "is_split_setup": false,
+        "linked": null,
+        "total_cost": 0,
+        "depreciation": null,
+        "has_depreciation": false,
+        "remaining_amount_to_pay": 0,
+        "project_contract_url": {
+            "id": 410,
+            "model_type": "App\\Models\\RealStateProject",
+            "model_id": 125,
+            "uuid": "3227ca4d-1cc8-4766-ab16-29cc3c1e0412",
+            "collection_name": "project_contract",
+            "name": "مؤسسة رواد المجرة_",
+            "file_name": "مؤسسة-رواد-المجرة_.pdf",
+            "mime_type": "application/pdf",
+            "disk": "public",
+            "conversions_disk": "public",
+            "size": 3734607,
+            "manipulations": [],
+            "custom_properties": [],
+            "generated_conversions": [],
+            "responsive_images": [],
+            "order_column": 1,
+            "created_at": "2026-01-02T21:29:42.000000Z",
+            "updated_at": "2026-01-02T21:29:42.000000Z",
+            "original_url": "https://saaf.neop.co/storage/410/مؤسسة-رواد-المجرة_.pdf",
+            "preview_url": ""
+        },
+        "development_contract_url": null,
+        "marketing_contract_url": null,
+        "units_count": 0,
+        "spv_section": 0,
+        "property_owner_company_name": null,
+        "commercial_registration_number": null,
+        "vat_tax_number": null,
+        "available_for_reint": null,
+        "actions": {
+            "is_linked": false,
+            "is_closed": false,
+            "is_ready_for_use": false,
+            "is_sold": false,
+            "is_reinted": false,
+            "has_split_setup": false,
+            "can_close": true,
+            "can_ready_for_use": false,
+            "can_setup_split": false,
+            "can_sell": false,
+            "can_reint": false,
+            "can_return_advance": false,
+            "can_deliver": false,
+            "can_receive_payment": false,
+            "can_pay_sell": false,
+            "can_pay_reint": false
+        },
+        "created_at": "2026-01-02 21:29:41",
+        "updated_at": "2026-01-02 21:29:41"
+    },
+    "status": 200,
+    "message": "تمت العملية بنجاح"
+}

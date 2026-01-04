@@ -1,0 +1,11 @@
+{
+  "project_id": 0,
+  "fund_id": 101,
+  "name": "New project Number 347",
+  "project_size": 100,
+  "project_type": "1",     
+  "price_per_meter": 100,
+  "location": "Location1, ب",
+  "developer_ids": [25],
+  "for_type": "0"
+}
