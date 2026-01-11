@@ -1,14 +1,18 @@
 package com.api.models.Response.RealEstateProjects;
 
 public class RealEstateProjectGetResponse {
+    
+    
     private int id;
-    private WrapperProjectActions actions;
+    private ProjectActionsGetresponse actions;
+    private boolean is_split_setup;
 
-     private boolean is_split_setup;
+
+
+
+
 
     // getters & setters
-
-   
 
 
    public boolean isSplitSetup() {
@@ -33,11 +37,11 @@ public class RealEstateProjectGetResponse {
 
 
 
-    public WrapperProjectActions getActions() {
+    public ProjectActionsGetresponse getActions() {
         return actions;
     }
 
-    public void setActions(WrapperProjectActions actions) {
+    public void setActions(ProjectActionsGetresponse actions) {
         this.actions = actions;
     }
 

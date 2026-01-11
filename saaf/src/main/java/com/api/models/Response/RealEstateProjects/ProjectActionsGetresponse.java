@@ -2,7 +2,7 @@ package com.api.models.Response.RealEstateProjects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class WrapperProjectActions {
+public class ProjectActionsGetresponse {
      @JsonProperty("is_linked")
     private boolean isLinked;
 

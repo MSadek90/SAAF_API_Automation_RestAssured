@@ -11,7 +11,7 @@ import Flow.RealEstateProjects.LinkedprojectToFundFlow;
 import io.restassured.response.Response;
 
 
-public class LinkedToFundTestCase {
+public class LinkProjectToFundTestCase {
     
 
     @Test
