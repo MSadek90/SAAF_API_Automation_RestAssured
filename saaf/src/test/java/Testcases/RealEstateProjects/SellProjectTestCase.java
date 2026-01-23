@@ -14,34 +14,26 @@ import io.restassured.response.Response;
 
 public class SellProjectTestCase {
 
+  @Test
+  public void sellRealEstateProjectTestCase() {
 
-    @Test
-    public void sellRealEstateProjectTestCase(){
+    RealEstateProjectPostRequest projectRequest = JsonUtils.fromJson(
+        "src/test/java/resources/Request/RealEstateProjectRequest.json",
+        RealEstateProjectPostRequest.class);
 
+    LinkedProjectToFundPostRequest linkRequest = JsonUtils.fromJson(
+        "src/test/java/resources/Request/LinkedProjectToFund.json",
+        LinkedProjectToFundPostRequest.class);
 
-       
-        //to get data
-          RealEstateProjectPostRequest projectRequest = JsonUtils.fromJson(
-            "src/test/java/resources/Request/RealEstateProjectRequest.json",
-            RealEstateProjectPostRequest.class);
+    SellprojectPostRequest sellRequest = JsonUtils.fromJson(
+        "src/test/java/resources/Request/SellProjectRequest.json",
+        SellprojectPostRequest.class);
 
-       
-            LinkedProjectToFundPostRequest linkRequest = JsonUtils.fromJson(
-           "src/test/java/resources/Request/LinkedProjectToFund.json",
-           LinkedProjectToFundPostRequest.class);
+    Response response = new SellProjectFlow().sellRealestateProjectFlow(projectRequest, linkRequest, sellRequest);
+    RealEstateProjectGetResponse realEstateProjectGetResponse = JsonUtils.toObject(response,
+        RealEstateProjectGetResponse.class);
+    new SellProjectAssertion().assertActionsValues(realEstateProjectGetResponse);
 
-           
-       
-           SellprojectPostRequest sellRequest = JsonUtils.fromJson(
-           "src/test/java/resources/Request/SellProjectRequest.json",
-           SellprojectPostRequest.class);
+  }
 
-           
-
-        Response response = new SellProjectFlow().sellRealestateProjectFlow(projectRequest, linkRequest, sellRequest);
-        RealEstateProjectGetResponse realEstateProjectGetResponse = JsonUtils.toObject(response,RealEstateProjectGetResponse.class);
-        new SellProjectAssertion().assertActionsValues(realEstateProjectGetResponse);
-        
-    }
-    
 }

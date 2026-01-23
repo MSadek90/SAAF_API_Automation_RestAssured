@@ -1,4 +1,4 @@
-package Testcases;
+package Testcases.RealEstateProjects;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,17 +12,14 @@ import io.restassured.response.Response;
 public class CreateProjectTestCases {
 
     @Test
-    public void createProjectTest(){
-
+    public void createProjectTest() {
 
         RealEstateProjectPostRequest request = JsonUtils.fromJson(
-            "src/test/java/resources/RealEstateProjects/RealEstateProjectRequest.json",
-            RealEstateProjectPostRequest.class);
+                "src/test/java/resources/RealEstateProjects/RealEstateProjectRequest.json",
+                RealEstateProjectPostRequest.class);
 
-
-
-      Response response = new ProjectsService().createProject(request);
-      Assert.assertEquals(response.statusCode(), 200);
+        Response response = new ProjectsService().createProject(request);
+        Assert.assertEquals(response.statusCode(), 200);
     }
-    
+
 }

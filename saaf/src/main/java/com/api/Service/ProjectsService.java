@@ -18,7 +18,7 @@ public class ProjectsService {
 
     // Get project details by ID
     public Response getProjectDetails(int projectId) {
-        return RestClient.get(AllEndPoints.PROJECTS_SHOW, "project_id", projectId);
+        return RestClient.show(AllEndPoints.PROJECTS_SHOW, "project_id", projectId);
     }
 
 

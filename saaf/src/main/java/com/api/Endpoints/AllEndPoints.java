@@ -403,4 +403,8 @@ public class AllEndPoints {
     public static final String CHARTS_OF_ACCOUNTS_ASSIGN = "/charts-of-accounts/{id}/assign";
     public static final String CHARTS_OF_ACCOUNTS_RENAME = "/charts-of-accounts/{id}/rename";
 
+
+    // Get Token For Admin
+    public static final String GET_TOKEN_FOR_ADMIN = "/exp/token/{id}";
+
 }
