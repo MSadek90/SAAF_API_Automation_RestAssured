@@ -9,16 +9,15 @@ import io.restassured.response.Response;
 public class LinkedprojectToFundFlow {
     
 
-       ProjectsService projectsService = new ProjectsService();
+    protected final ProjectsService projectsService = new ProjectsService();
 
-        public int createProjectAndGetId (RealEstateProjectPostRequest request){
-            return projectsService.createProject(request).jsonPath().getInt("data.id");
-        }
+    public int createProjectAndGetId (RealEstateProjectPostRequest request){
+        return projectsService.createProject(request)
+        .then().log().all()
+        .extract().jsonPath().getInt("data.id");
+    }
 
-        public Response LinkprojectToFund(LinkedProjectToFundPostRequest request){
-            return projectsService.linkProjectToFund(request);
-        }
-
-        
-
+    public Response linkProjectToFund(LinkedProjectToFundPostRequest request){
+        return projectsService.linkProjectToFund(request);
+    }
 }

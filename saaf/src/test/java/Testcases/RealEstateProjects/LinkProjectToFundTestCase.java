@@ -16,15 +16,15 @@ public class LinkProjectToFundTestCase {
 
     @Test
     public void testLinkedProjectToFund() {
-             
+             //saaf\src\test\java\resources\Request\LinkProjectToFundRequest.json
        //to get data
         RealEstateProjectPostRequest projectRequest = JsonUtils.fromJson(
-            "src/test/java/resources/RealEstateProjects/RealEstateProjectRequest.json",
+            "src/test/java/resources/Request/RealEstateProjectRequest.json",
             RealEstateProjectPostRequest.class);
 
 
        LinkedProjectToFundPostRequest linkRequest = JsonUtils.fromJson(
-           "src/test/java/resources/RealEstateProjects/LinkedProjectToFund.json",
+           "src/test/java/resources/Request/LinkProjectToFundRequest.json",
            LinkedProjectToFundPostRequest.class);
          
 
@@ -33,7 +33,7 @@ public class LinkProjectToFundTestCase {
 
         int projectId = linkedprojectToFundFlow.createProjectAndGetId(projectRequest);
         linkRequest.setProjectId(projectId);
-        Response response = linkedprojectToFundFlow.LinkprojectToFund(linkRequest);
+        Response response = linkedprojectToFundFlow.linkProjectToFund(linkRequest);
 
         //Assertions
         ProjcetsAssertions.logResponse(response);

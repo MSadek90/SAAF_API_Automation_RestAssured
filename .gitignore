@@ -4,3 +4,7 @@
 .github\instructions\codacy.instructions.md
 .vscode
 .env
+
+
+#Ignore cursor AI rules
+.cursor\rules\codacy.mdc
