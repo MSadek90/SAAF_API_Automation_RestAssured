@@ -15,6 +15,7 @@ public class AllEndPoints {
     public static final String EMPLOYEES_UPDATE = "/employees/{id}";
     public static final String EMPLOYEES_DELETE = "/employees/{id}";
     public static final String EMPLOYEES_TOGGLE = "/employees/{id}/toggle";
+    public static final String EMPLOYEES_PERMISSIONS = "/permissions";
 
     // Roles
     public static final String ROLES_INDEX = "/roles";
@@ -298,8 +299,8 @@ public class AllEndPoints {
     public static final String PROJECTS_RECEIVE_PAYMENT = "/projects/{id}/receive-payment";
     public static final String PROJECTS_DELIVER = "/projects/{id}/deliver";
     public static final String PROJECTS_RETURN_ADVANCE = "/projects/{id}/return-advance";
-    public static final String PROJECTS_PHASE_UPDATE = "/projects/{id}/phase-update";
-    public static final String PROJECTS_LINK_FUND = "/projects/{id}/link-fund";
+    public static final String PROJECTS_PHASE_UPDATE = "/projects/{id}/project-phase";
+    public static final String PROJECTS_LINK_FUND = "/projects/link_fund";
 
     public static final String PROJECTS_EVALUATION_HISTORY = "/projects/{id}/evaluation-history";
     public static final String PROJECTS_EVALUATION_STORE = "/projects/{id}/evaluation";

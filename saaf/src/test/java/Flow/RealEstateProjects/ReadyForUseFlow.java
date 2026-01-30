@@ -13,11 +13,11 @@ public class ReadyForUseFlow extends abstarctProjectFlowBase {
 
                                   
     // create new project and return project id                                        
-    int project_id = createProjectAndGetId(request);
+    int project_id = createProjectAndGetId(request).jsonPath().getInt("id");
 
 
     // pass the new created project_id to linked it to the fund
-    request2.setProjectId(project_id);
+    request2.setProjectId(project_id);  
     linkProjectToFund(request2);
 
     

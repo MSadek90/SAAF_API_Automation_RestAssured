@@ -25,8 +25,8 @@ public class LinkProjectToFundTestCase {
 
         LinkedprojectToFundFlow linkedprojectToFundFlow = new LinkedprojectToFundFlow();
 
-        int projectId = linkedprojectToFundFlow.createProjectAndGetId(projectRequest);
-        linkRequest.setProjectId(projectId);
+        linkedprojectToFundFlow.createProjectAndGetId(projectRequest);
+        
         Response response = linkedprojectToFundFlow.linkProjectToFund(linkRequest);
 
         ProjcetsAssertions.logResponse(response);

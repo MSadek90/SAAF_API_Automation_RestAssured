@@ -1,12 +1,19 @@
 package Testcases.RealEstateProjects;
 
-import org.testng.annotations.Test;
+import java.util.List;
 
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import com.api.BuissnessRules.SellRealEstateProjectRules;
+import com.api.Checker.RealEstateProjectActionsChecker;
+import com.api.DataLoader.RealEstateDataLoader;
 import com.api.Utils.JsonUtils;
-import com.api.models.Request.RealEstateProjects.LinkedProjectToFundPostRequest;
-import com.api.models.Request.RealEstateProjects.RealEstateProjectPostRequest;
 import com.api.models.Request.RealEstateProjects.SellprojectPostRequest;
-import com.api.models.Response.RealEstateProjects.RealEstateProjectGetResponse;
+import com.api.models.Response.RealEstateProjects.RealEstateProjectData;
+import com.api.models.Response.RealEstateProjects.RealEstateProjectResponse;
+import com.api.models.UtilsModels.CheckActionsModel;
 
 import Assertions.SellProjectAssertion;
 import Flow.RealEstateProjects.SellProjectFlow;
@@ -17,22 +24,33 @@ public class SellProjectTestCase {
   @Test
   public void sellRealEstateProjectTestCase() {
 
-    RealEstateProjectPostRequest projectRequest = JsonUtils.fromJson(
-        "src/test/java/resources/Request/RealEstateProjectRequest.json",
-        RealEstateProjectPostRequest.class);
+  
 
-    LinkedProjectToFundPostRequest linkRequest = JsonUtils.fromJson(
-        "src/test/java/resources/Request/LinkedProjectToFund.json",
-        LinkedProjectToFundPostRequest.class);
+    SellprojectPostRequest sellRequest = RealEstateDataLoader.sellProjectLoadData();
 
-    SellprojectPostRequest sellRequest = JsonUtils.fromJson(
-        "src/test/java/resources/Request/SellProjectRequest.json",
-        SellprojectPostRequest.class);
+    Response response = new SellProjectFlow().sellRealestateProjectFlow(
+      RealEstateDataLoader.projectLoadData(),
+       RealEstateDataLoader.linkedProjectToFundLoadData(),
+       sellRequest);
 
-    Response response = new SellProjectFlow().sellRealestateProjectFlow(projectRequest, linkRequest, sellRequest);
-    RealEstateProjectGetResponse realEstateProjectGetResponse = JsonUtils.toObject(response,
-        RealEstateProjectGetResponse.class);
-    new SellProjectAssertion().assertActionsValues(realEstateProjectGetResponse);
+
+
+      RealEstateProjectResponse realEstateProjectResponse = JsonUtils.toObject(response,
+            RealEstateProjectResponse.class);
+
+
+    SellRealEstateProjectRules expectedRules = SellRealEstateProjectRules.validateSellProjectRequest(sellRequest);
+
+    new SellProjectAssertion().assertActionsValues(realEstateProjectResponse.getData(), expectedRules);
+
+    List<CheckActionsModel> actionChecks = RealEstateProjectActionsChecker.checkProjectActions(realEstateProjectResponse);
+
+    SoftAssert softAssert = new SoftAssert();
+    for(CheckActionsModel check : actionChecks) {
+       softAssert.assertEquals(check.getActual_Result(), check.getExpected_Result(), "Action check failed for: " +
+       check.getEndpoint());
+    }
+    softAssert.assertAll();
 
   }
 

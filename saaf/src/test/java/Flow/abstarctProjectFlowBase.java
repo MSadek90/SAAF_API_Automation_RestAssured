@@ -11,9 +11,9 @@ public abstract class abstarctProjectFlowBase {
 
     protected ProjectsService projectsService = new ProjectsService();
 
-     public int createProjectAndGetId(RealEstateProjectPostRequest request){
+     public Response createProjectAndGetId(RealEstateProjectPostRequest request){
         Response response = projectsService.createProject(request);
-        return response.jsonPath().getInt("id");
+        return response;
      }
 
      public Response linkProjectToFund(LinkedProjectToFundPostRequest request){

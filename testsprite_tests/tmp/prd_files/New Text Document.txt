@@ -1,0 +1,1 @@
+The system allows admins to login, navigate to Real Estate Management from sidebar, view the fund list, and create a new fund by filling a multi-step form

@@ -1,0 +1,102 @@
+{
+  "tech_stack": ["Java 17", "RestAssured", "TestNG", "Maven", "Jackson", "Lombok", "Log4j2", "Allure"],
+  "features": [
+    {
+      "name": "RestClient",
+      "description": "HTTP client wrapper for making REST API calls using RestAssured",
+      "files": ["saaf/src/main/java/com/api/Client/RestClient.java"]
+    },
+    {
+      "name": "Endpoints Management",
+      "description": "Centralized endpoint definitions for all API routes",
+      "files": ["saaf/src/main/java/com/api/Endpoints/AllEndPoints.java"]
+    },
+    {
+      "name": "Configuration",
+      "description": "Environment configuration management using dotenv",
+      "files": ["saaf/src/main/java/com/api/Config/ConfigEnv.java"]
+    },
+    {
+      "name": "Projects Service",
+      "description": "Service layer for real estate project operations",
+      "files": ["saaf/src/main/java/com/api/Service/ProjectsService.java"]
+    },
+    {
+      "name": "Organization Service",
+      "description": "Service for managing employees and organization data",
+      "files": ["saaf/src/main/java/com/api/Service/OrganizationService/Employees.java"]
+    },
+    {
+      "name": "Authentication Service",
+      "description": "Token generation and authentication handling",
+      "files": ["saaf/src/main/java/com/api/Service/GetTokenService.java"]
+    },
+    {
+      "name": "Real Estate Data Loader",
+      "description": "Data loading utilities for real estate test data",
+      "files": ["saaf/src/main/java/com/api/DataLoader/RealEstateDataLoader.java"]
+    },
+    {
+      "name": "Business Rules",
+      "description": "Business rules validation for selling real estate projects",
+      "files": ["saaf/src/main/java/com/api/Rules/SellRealEstateProjectRules.java"]
+    },
+    {
+      "name": "Request Models",
+      "description": "POJO models for API request payloads",
+      "files": [
+        "saaf/src/main/java/com/api/models/Request/RealEstateProjects/RealEstateProjectPostRequest.java",
+        "saaf/src/main/java/com/api/models/Request/RealEstateProjects/LinkedProjectToFundPostRequest.java",
+        "saaf/src/main/java/com/api/models/Request/RealEstateProjects/SellprojectPostRequest.java",
+        "saaf/src/main/java/com/api/models/Request/Organization/getTokenForEmployeeRequest.java"
+      ]
+    },
+    {
+      "name": "Response Models",
+      "description": "POJO models for API response parsing",
+      "files": [
+        "saaf/src/main/java/com/api/models/Response/RealEstateProjects/RealEstateProjectGetResponse.java",
+        "saaf/src/main/java/com/api/models/Response/RealEstateProjects/ProjectActionsGetresponse.java"
+      ]
+    },
+    {
+      "name": "Test Flows",
+      "description": "Reusable test flow classes for complex test scenarios",
+      "files": [
+        "saaf/src/test/java/Flow/abstarctProjectFlowBase.java",
+        "saaf/src/test/java/Flow/RealEstateProjects/SellProjectFlow.java",
+        "saaf/src/test/java/Flow/RealEstateProjects/LinkedprojectToFundFlow.java",
+        "saaf/src/test/java/Flow/RealEstateProjects/ReadyForUseFlow.java",
+        "saaf/src/test/java/Flow/Organization/ValidateEmployeePermissionsFlow.java"
+      ]
+    },
+    {
+      "name": "Assertions",
+      "description": "Custom assertion classes for validating API responses",
+      "files": [
+        "saaf/src/test/java/Assertions/ProjcetsAssertions.java",
+        "saaf/src/test/java/Assertions/SellProjectAssertion.java"
+      ]
+    },
+    {
+      "name": "Test Cases",
+      "description": "TestNG test case classes",
+      "files": [
+        "saaf/src/test/java/Testcases/RealEstateProjects/CreateProjectTestCases.java",
+        "saaf/src/test/java/Testcases/RealEstateProjects/LinkProjectToFundTestCase.java",
+        "saaf/src/test/java/Testcases/RealEstateProjects/SellProjectTestCase.java",
+        "saaf/src/test/java/Testcases/ValidateEmployeePermissions.java"
+      ]
+    },
+    {
+      "name": "Utilities",
+      "description": "Helper utilities for JSON handling, logging, and permissions",
+      "files": [
+        "saaf/src/main/java/com/api/Utils/JsonUtils.java",
+        "saaf/src/main/java/com/api/Utils/Logging.java",
+        "saaf/src/main/java/com/api/Utils/PermissionsMapper.java",
+        "saaf/src/main/java/com/api/Utils/UnicodeUtils.java"
+      ]
+    }
+  ]
+}

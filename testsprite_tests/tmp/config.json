@@ -1,0 +1,15 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:443",
+  "executionArgs": {
+    "projectName": "SAAF_API_Automation",
+    "projectPath": "d:\\New architecture\\RestAssured_Framework\\SAAF_API_Automation",
+    "testIds": [],
+    "additionalInstruction": "Run a live browser test on https://saaf.neop.co with the following steps:\n1. Navigate to https://saaf.neop.co\n2. Login with email: admin@email.com and password: 123123\n3. From the sidebar, click on 'Real Estate Management'\n4. Navigate to 'Real Estate Fund List' section\n5. Click on 'Add Fund' button\n6. Fill in all required fields with realistic dummy data across all steps of the fund creation form\n7. Submit the form and verify the fund was created successfully\n\nShow the browser execution visually. Use headed mode (not headless) so the browser window is visible.",
+    "envs": {
+      "API_KEY": "sk-user-EmAKJp1jQhd_...rDx_GLCcZRd-i5FdQqHU"
+    }
+  }
+}
