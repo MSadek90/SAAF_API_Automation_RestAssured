@@ -38,11 +38,29 @@ public class RestClient {
         }
     }
 
-    public static Response postWithId(String Endpoint, Object body, String Key_name, int Key_value) {
+    public static Response post(String Endpoint, Object body, String Key_name, int Key_value) {
         log.info("[Post] request to {}", Endpoint);
         try {
             return baseRequest()
                     .body(body)
+                    .pathParam(Key_name, Key_value)
+                    .when()
+                    .post(Endpoint)
+                    .then()
+                    .log().all()
+                    .extract().response();
+        } catch (Exception e) {
+            log.error("Error occurred while sending POST request to {}: {}", Endpoint, e.getMessage());
+            throw e;
+        }
+
+    }
+
+    
+    public static Response post(String Endpoint,String Key_name, int Key_value) {
+        log.info("[Post] request to {}", Endpoint);
+        try {
+            return baseRequest()
                     .pathParam(Key_name, Key_value)
                     .when()
                     .post(Endpoint)

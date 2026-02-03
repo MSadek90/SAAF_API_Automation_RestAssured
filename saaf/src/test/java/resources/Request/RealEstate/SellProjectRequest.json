@@ -1,8 +1,8 @@
 {
-  "selling_price": "200",
+  "selling_price": "2000",
   "pay_type": "0",
   "sell_type": "0",
   "selling_date": "2022-12-22",
-  "paid_amount": "11",
-  "vat": "100"
+  "paid_amount": "110",
+  "vat": "1600"
 }

@@ -1,60 +1,50 @@
 package com.api.Checker;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.s;
+import com.api.DataLoader.RealEstateDataLoader;
+import com.api.annotations.RealEstateProjectsActionsConfig;
 
-import com.api.Endpoints.AllEndPoints;
-import com.api.Service.ProjectsService;
 import com.api.models.Response.RealEstateProjects.RealEstateProjectResponse;
 import com.api.models.UtilsModels.CheckActionsModel;
 
-import io.restassured.response.Response;
-
 public class RealEstateProjectActionsChecker {
 
-    public static List<CheckActionsModel> checkProjectActions(RealEstateProjectResponse response) {
+    public static List<CheckActionsModel> checkProjectActions(RealEstateProjectResponse response)
+            throws IllegalArgumentException, IllegalAccessException {
 
-        List<CheckActionsModel> checks = new ArrayList<>();
-        if (response.getData().getActions().canDeliver() == false) {
+        List<CheckActionsModel> falseEndpoints = new ArrayList<>();
 
+        // #1. Get the 'actions' object and the 'projectId' from the response
+        var actions = response.getData().getActions();
 
-            Response response1 = ProjectsService.deliverProjectAction(response.getData().getId());
-            CheckActionsModel check1 = new CheckActionsModel();
-            check1.setEndpoint(AllEndPoints.PROJECTS_DELIVER);
-            check1.setExpected_Result(403);
-            check1.setActual_Result(response1.getStatusCode());
-            checks.add(check1);
+        // #2. Get all declared fields from the Actions class using reflection
+        var fields = actions.getClass().getDeclaredFields();
+
+        // #3. Start a loop to iterate through each field
+        for (var field : fields) {
+            // #4. Make the field accessible (to read private fields)
+            field.setAccessible(true);
+
+            // #5. Check if the field name starts with "can"
+            if (field.isAnnotationPresent(RealEstateProjectsActionsConfig.class) && field.getName().startsWith("can")) {
+                // #6. Get the boolean value of the field from the actions object
+                boolean value = field.getBoolean(actions);
+
+                // #7. If the value is 'false', extract the action name from the field name
+                if (!value) {
+                    String apiEndpoint = field.getAnnotation(RealEstateProjectsActionsConfig.class).endpoint();
+                    Object BodyTemp = null;
+                    if (field.getName().equals("canReceivePayment")) {
+                        BodyTemp = new RealEstateDataLoader().receiveProjectPaymentLoadData();
+                    }
+                    // #8. Put all endpoints in List and return them only
+                    falseEndpoints.add(new CheckActionsModel(apiEndpoint, BodyTemp));
+                }
+            }
         }
-
-        if (response.getData().getActions().canReceivePayment() == false) {
-
-            Response response2 = ProjectsService.receivePaymentAction(response.getData().getId());
-
-            CheckActionsModel check2 = new CheckActionsModel(); 
-            check2.setEndpoint(AllEndPoints.PROJECTS_RECEIVE_PAYMENT);
-            check2.setExpected_Result(403);
-            check2.setActual_Result(response2.getStatusCode());
-            checks.add(check2);
-            
-        }
-
-        if (response.getData().getActions().canReturnAdvance() == false) {
-
-            Response response3 = ProjectsService.returnAdvanceAction(response.getData().getId());
-
-            CheckActionsModel check3 = new CheckActionsModel();
-            check3.setEndpoint(AllEndPoints.PROJECTS_RETURN_ADVANCE);
-            check3.setExpected_Result(403);
-            check3.setActual_Result(response3.getStatusCode());
-            checks.add(check3);
-        }
-        return checks;
+        return falseEndpoints;
     }
 
 }
-
-

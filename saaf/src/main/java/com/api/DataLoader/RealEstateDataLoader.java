@@ -3,7 +3,9 @@ package com.api.DataLoader;
 import com.api.Utils.JsonUtils;
 import com.api.models.Request.RealEstateProjects.LinkedProjectToFundPostRequest;
 import com.api.models.Request.RealEstateProjects.RealEstateProjectPostRequest;
+import com.api.models.Request.RealEstateProjects.ReceiveProjectPaymentRequest;
 import com.api.models.Request.RealEstateProjects.SellprojectPostRequest;
+import com.api.models.Response.RealEstateProjects.RealEstateProjectResponse;
 
 public class RealEstateDataLoader {
 
@@ -27,6 +29,9 @@ public class RealEstateDataLoader {
     }
 
 
+  
+
+
 
 
 
@@ -37,4 +42,13 @@ public class RealEstateDataLoader {
         return sellProjectRequest;
     }
 
+
+
+
+    public ReceiveProjectPaymentRequest receiveProjectPaymentLoadData() {
+        ReceiveProjectPaymentRequest receiveProjectPaymentRequest = JsonUtils.fromJson(
+            "src/test/java/resources/Request/RealEstate/ReceivePaymentForSellingProject.json",
+            ReceiveProjectPaymentRequest.class);
+        return receiveProjectPaymentRequest;
+    }
 }

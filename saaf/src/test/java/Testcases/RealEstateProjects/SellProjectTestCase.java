@@ -2,55 +2,48 @@ package Testcases.RealEstateProjects;
 
 import java.util.List;
 
-import org.testng.Assert;
+import org.checkerframework.checker.units.qual.C;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import com.api.BuissnessRules.SellRealEstateProjectRules;
 import com.api.Checker.RealEstateProjectActionsChecker;
 import com.api.DataLoader.RealEstateDataLoader;
-import com.api.Utils.JsonUtils;
+import com.api.Service.ProjectsService;
+import com.api.models.Request.RealEstateProjects.ReceiveProjectPaymentRequest;
 import com.api.models.Request.RealEstateProjects.SellprojectPostRequest;
-import com.api.models.Response.RealEstateProjects.RealEstateProjectData;
 import com.api.models.Response.RealEstateProjects.RealEstateProjectResponse;
-import com.api.models.UtilsModels.CheckActionsModel;
+
 
 import Assertions.SellProjectAssertion;
 import Flow.RealEstateProjects.SellProjectFlow;
+import TestCasesHelper.SellProjectHelper;
 import io.restassured.response.Response;
 
 public class SellProjectTestCase {
 
   @Test
-  public void sellRealEstateProjectTestCase() {
+  public void sellRealEstateProjectTestCase() throws IllegalArgumentException, IllegalAccessException {
 
-  
-
+    // #1. Load Sell Project Request Data to use it in step (2 & 3)
     SellprojectPostRequest sellRequest = RealEstateDataLoader.sellProjectLoadData();
 
-    Response response = new SellProjectFlow().sellRealestateProjectFlow(
-      RealEstateDataLoader.projectLoadData(),
-       RealEstateDataLoader.linkedProjectToFundLoadData(),
-       sellRequest);
+    // #2. Call Sell Project Flow
+    Response response = SellProjectFlow
+        .sellRealestateProjectFlow(RealEstateDataLoader.projectLoadData(),
+            RealEstateDataLoader.linkedProjectToFundLoadData(),
+            sellRequest);
 
-
-
-      RealEstateProjectResponse realEstateProjectResponse = JsonUtils.toObject(response,
-            RealEstateProjectResponse.class);
-
-
+    // #3. Validate Sell Project Business Rules
     SellRealEstateProjectRules expectedRules = SellRealEstateProjectRules.validateSellProjectRequest(sellRequest);
 
-    new SellProjectAssertion().assertActionsValues(realEstateProjectResponse.getData(), expectedRules);
+    // #4. Get Actual Response
+    RealEstateProjectResponse actualResponse = response.as(RealEstateProjectResponse.class);
 
-    List<CheckActionsModel> actionChecks = RealEstateProjectActionsChecker.checkProjectActions(realEstateProjectResponse);
+    // #5. Assert Sell Project Actions Values
+    new SellProjectAssertion().assertActionsValues(actualResponse, expectedRules);
 
-    SoftAssert softAssert = new SoftAssert();
-    for(CheckActionsModel check : actionChecks) {
-       softAssert.assertEquals(check.getActual_Result(), check.getExpected_Result(), "Action check failed for: " +
-       check.getEndpoint());
-    }
-    softAssert.assertAll();
+    // #6. Check Project Actions endpoints
+    SellProjectHelper.validateProjectAction(actualResponse);
 
   }
 

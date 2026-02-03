@@ -3,14 +3,12 @@ package com.api.models.UtilsModels;
 public class CheckActionsModel {
 
     private String Endpoint;
-    private int Actual_Result;
-    private int Expected_Result;
+    private Object body;
 
 
-    public CheckActionsModel(String endpoint, int actual_Result, int expected_Result) {
+    public CheckActionsModel(String endpoint, Object body) {
         Endpoint = endpoint;
-        Actual_Result = actual_Result;
-        Expected_Result = expected_Result;
+        this.body = body;
     }
 
 
@@ -25,20 +23,14 @@ public class CheckActionsModel {
         Endpoint = endpoint;
     }
 
-    public int getActual_Result() {
-        return Actual_Result;
+
+    public Object getBody() {
+        return body;
     }
 
-    public void setActual_Result(int actual_Result) {
-        Actual_Result = actual_Result;
+    public void setBody(Object body) {
+        this.body = body;
     }
 
-    public int getExpected_Result() {
-        return Expected_Result;
-    }
-
-    public void setExpected_Result(int expected_Result) {
-        Expected_Result = expected_Result;
-    }
 
 }

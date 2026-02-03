@@ -2,7 +2,9 @@ package Flow.RealEstateProjects;
 
 import org.apache.commons.logging.Log;
 import org.apache.logging.log4j.LogManager;
+import org.checkerframework.checker.units.qual.s;
 
+import com.api.Service.ProjectsService;
 import com.api.models.Request.RealEstateProjects.LinkedProjectToFundPostRequest;
 import com.api.models.Request.RealEstateProjects.RealEstateProjectPostRequest;
 import com.api.models.Request.RealEstateProjects.SellprojectPostRequest;
@@ -16,10 +18,11 @@ public class SellProjectFlow extends abstarctProjectFlowBase {
     public static final org.apache.logging.log4j.Logger logger = LogManager
             .getLogger(ValidateEmployeePermissionsFlow.class);
 
-    public Response sellRealestateProjectFlow(RealEstateProjectPostRequest projectRequest,
+    public static Response sellRealestateProjectFlow(RealEstateProjectPostRequest projectRequest,
             LinkedProjectToFundPostRequest linkProjectRequest,
             SellprojectPostRequest request) {
 
+                
                 
 
         // create new project and return project id
@@ -42,7 +45,9 @@ public class SellProjectFlow extends abstarctProjectFlowBase {
         readyProjectForUse(Project_id);
 
         // Return the response of the Sell Endpoint to make assertio on them
-        return projectsService.sellProjectAction(request, Project_id);
+         ProjectsService.sellProjectAction(request, Project_id);
+
+         return ProjectsService.getProjectDetails(Project_id);
 
     }
 

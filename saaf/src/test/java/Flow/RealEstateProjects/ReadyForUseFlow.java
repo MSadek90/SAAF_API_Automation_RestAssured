@@ -1,5 +1,6 @@
 package Flow.RealEstateProjects;
 
+import com.api.Service.ProjectsService;
 import com.api.models.Request.RealEstateProjects.LinkedProjectToFundPostRequest;
 import com.api.models.Request.RealEstateProjects.RealEstateProjectPostRequest;
 
@@ -20,9 +21,9 @@ public class ReadyForUseFlow extends abstarctProjectFlowBase {
     request2.setProjectId(project_id);  
     linkProjectToFund(request2);
 
-    
-    return projectsService.readyForUseAction(project_id);
-    
+
+    return ProjectsService.readyForUseAction(project_id);
+
 }
 
 }

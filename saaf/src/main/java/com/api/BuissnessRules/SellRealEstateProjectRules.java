@@ -23,48 +23,44 @@ public class SellRealEstateProjectRules {
 
         SellRealEstateProjectRules expected = new SellRealEstateProjectRules();
 
+        // partial = 1  , Not_Received = 1
+        // fully = 0 , Received = 0
+
+        System.out.println("Validating Sell Project Request for PayType: " + request.getPayType() + ", SellType: " + request.getSellType());
         if(request.getPayType().equals("0") && request.getSellType().equals("0")){
            expected.isSold = true;
-           expected.canDeliver = true;
-           expected.canReceivePayment = true;
-           expected.canReturnAdvance = true;
            expected.isLinked = true;
            expected.isClosed = false;
            expected.isReadyForUse = true;
            expected.isReinted = false;
            expected.hasSplitSetup = false;
            expected.canClose = true;
-           expected.canSell = true;
+           expected.canSell = false;
            expected.canReint = false;
-           expected.canReturnAdvance = true;
-           expected.canDeliver = true;
-           expected.canReceivePayment = true;
-        }
-
-        else if(request.getPayType() == "0" && request.getSellType() == "1"){
-
-           expected.isSold = true;
-           expected.canDeliver = true;
-           expected.canReceivePayment = true;
-           expected.canReturnAdvance = true;
-           expected.isLinked = true;
-           expected.isClosed = false;
-           expected.isReadyForUse = true;
-           expected.isReinted = false;
-           expected.hasSplitSetup = false;
-           expected.canClose = true;
-           expected.canSell = true;
-           expected.canReint = false;
-           expected.canReturnAdvance = true;
-           expected.canDeliver = true;
-           expected.canReceivePayment = true;
-        }
-        else if(request.getPayType() == "1" && request.getSellType() == "0"){
-
-           expected.isSold = true;
+           expected.canReturnAdvance = false;
            expected.canDeliver = false;
            expected.canReceivePayment = false;
+        }
+
+        else if(request.getPayType().equals("0") && request.getSellType().equals("1")){
+
+         System.out.println("Validating Sell Project Request for PayType: 0, SellType: 1");
+           expected.isSold = true;
+           expected.isLinked = true;
+           expected.isClosed = false;
+           expected.isReadyForUse = true;
+           expected.isReinted = false;
+           expected.hasSplitSetup = false;
+           expected.canClose = true;
+           expected.canSell = true;
+           expected.canReint = false;
            expected.canReturnAdvance = true;
+           expected.canDeliver = true;
+           expected.canReceivePayment = false;
+        }
+        else if(request.getPayType().equals("1") && request.getSellType().equals("0")){
+           System.out.println("Validating Sell Project Request for PayType: 1, SellType: 0");
+           expected.isSold = true;
            expected.isLinked = false;
            expected.isClosed = false;
            expected.isReadyForUse = true;
@@ -73,18 +69,16 @@ public class SellRealEstateProjectRules {
            expected.canClose = true;
            expected.canSell = true;
            expected.canReint = false;
-           expected.canReturnAdvance = true;
-           expected.canDeliver = true;
+           expected.canReturnAdvance = false;
+           expected.canDeliver = false;
            expected.canReceivePayment = true;
 
         }
 
-        else if (request.getPayType() == "1" && request.getSellType() == "1") {
+        else if (request.getPayType().equals("1") && request.getSellType().equals("1")) {
 
+           System.out.println("Validating Sell Project Request for PayType: 1, SellType: 1");
            expected.isSold = true;
-           expected.canDeliver = false;
-           expected.canReceivePayment = false;
-           expected.canReturnAdvance = true;
            expected.isLinked = false;
            expected.isClosed = false;
            expected.isReadyForUse = true;
@@ -101,5 +95,4 @@ public class SellRealEstateProjectRules {
         return expected;
 
     }
-
 }
